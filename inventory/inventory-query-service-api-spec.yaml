@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: Inventory Service
+  description: The Inventory Service provides the creation, insertion, update and deletion of cellphones.
+  version: 0.0.1
+paths:
+  /products:
+    get:
+      summary: Return all products
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /products/{productId}:
+    get:
+      summary: Find product by Id
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          description: Product Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /product/findByModel:
+    get:
+      summary: Find products by model
+      operationId: findProductsByModel
+      parameters:
+        - name: model
+          in: query
+          description: Model to find
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid status value
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          examples: ["p1"]
+        manufacturer:
+          type: string
+          examples: ["Apple", "Samsung"]
+        model:
+          type: string
+          examples: ["iPhone", "Galaxy"]
+        size:
+          type: string
+          examples: ["64GB", "128GB"]
+
