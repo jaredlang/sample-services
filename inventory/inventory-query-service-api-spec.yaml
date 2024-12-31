@@ -38,7 +38,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-  /product/findByModel:
+  /products/findByModel:
     get:
       summary: Find products by model
       operationId: findProductsByModel

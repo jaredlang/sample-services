@@ -18,6 +18,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+    put:
+      summary: Update an existing product
+      operationId: updateProduct
+      requestBody:
+        description: Update a product in the inventory
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+    post:
+      summary: Add a new product
+      operationId: addProduct
+      requestBody:
+        description: Add a new product to the inventory
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true                  
   /products/{productId}:
     get:
       summary: Find product by Id
@@ -47,29 +67,8 @@ paths:
           description: product Id to Delete
           required: true
           schema:
-            type: string                  
-  /product:
-    put:
-      summary: Update an existing product
-      operationId: updateProduct
-      requestBody:
-        description: Update a product in the inventory
-        content: 
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product'
-        required: true
-    post:
-      summary: Add a new product
-      operationId: addProduct
-      requestBody:
-        description: Add a new product to the inventory
-        content: 
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product'
-        required: true
-  /product/findByModel:
+            type: string
+  /products/findByModel:
     get:
       summary: Find products by model
       operationId: findProductsByModel

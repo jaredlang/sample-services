@@ -51,7 +51,7 @@ def delete_product(productId):
         return jsonify({"message": "Product deleted"}), 200
     return jsonify({"error": "Product not found"}), 404
 
-@app.route('/product', methods=['PUT'])
+@app.route('/products', methods=['PUT'])
 def update_product():
     """Update an existing product."""
     product_data = request.get_json()
@@ -61,16 +61,16 @@ def update_product():
         return jsonify({"message": "Product updated", "product": product}), 200
     return jsonify({"error": "Product not found"}), 404
 
-@app.route('/product', methods=['POST'])
+@app.route('/products', methods=['POST'])
 def add_product():
     """Add a new product."""
     product_data = request.get_json()
-    if find_product_by_id(product_data.get('id')):
-        return jsonify({"error": "Product with this ID already exists"}), 400
+    product_id = len(products)+1
+    product_data["id"]=f"p-{product_id}"
     products.append(product_data)
     return jsonify({"message": "Product added", "product": product_data}), 201
 
-@app.route('/product/findByModel', methods=['GET'])
+@app.route('/products/findByModel', methods=['GET'])
 def find_products_by_model():
     """Find products by model."""
     model = request.args.get('model')
