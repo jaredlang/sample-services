@@ -1,8 +1,10 @@
 openapi: 3.1.0
 info:
   title: Inventory Service
-  description: The Inventory Service provides the creation, insertion, update and deletion of cellphones.
+  description: The Inventory Service provides the query, creation, update and deletion of products.
   version: 0.0.1
+servers:
+  - url: https://mpk-inventory.azurewebsites.net/ 
 paths:
   /products:
     get:
